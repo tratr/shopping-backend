@@ -1,0 +1,44 @@
+
+application {
+  config {
+    baseName shopping
+    applicationType monolith
+    clientFramework react
+    packageName com.tratr
+    authenticationType jwt
+    prodDatabaseType postgresql
+    devDatabaseType postgresql
+    serverPort 8686,
+    buildTool gradle
+    languages [en]
+  }
+  // Set pagination options
+  paginate all with pagination
+
+  // Set service options to all except few
+  service all with serviceImpl
+
+  entities Category, Item
+}
+
+entity Category {
+    name String required unique
+    createdDate Instant
+    lastModifiedDate Instant
+    createdBy Long
+    lastModifiedBy Long
+}
+
+entity Item {
+    name String required unique
+    description String
+    price Double
+    createdDate Instant
+    lastModifiedDate Instant
+    createdBy Long
+    lastModifiedBy Long
+}
+
+relationship OneToMany {
+    Category{items} to Item{category required}
+}
