@@ -32,8 +32,8 @@ postgres=# grant all privileges on database shopping to myusername;
 
 ```bash
 # start service
-$ ./gradlew bootRun
+$ ./gradlew bootRun -Pdev
 
 # unit test
-$ ./gradlew clean test 
+$ ./gradlew clean test
 ```
