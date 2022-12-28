@@ -50,6 +50,14 @@ public interface ItemService {
     Optional<Item> findOne(Long id);
 
     /**
+     * Get the "name" item.
+     *
+     * @param name the name of the entity.
+     * @return the entity.
+     */
+    Optional<Item> findOne(String name);
+
+    /**
      * Delete the "id" item.
      *
      * @param id the id of the entity.

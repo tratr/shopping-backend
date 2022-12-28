@@ -87,6 +87,12 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Optional<Item> findOne(String name) {
+        return itemRepository.findByName(name);
+    }
+
+    @Override
     public void delete(Long id) {
         log.debug("Request to delete Item : {}", id);
         itemRepository.deleteById(id);

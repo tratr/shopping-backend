@@ -1,6 +1,7 @@
 package com.tratr.repository;
 
 import com.tratr.domain.Item;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +10,6 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ItemRepository extends JpaRepository<Item, Long> {}
+public interface ItemRepository extends JpaRepository<Item, Long> {
+    Optional<Item> findByName(String name);
+}

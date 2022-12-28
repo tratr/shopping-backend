@@ -36,8 +36,10 @@ public class CategoryController {
     }
 
     @GetMapping("/categories")
+    // Pageable : paging, pagination (SpringBoot takes care)
     public ResponseEntity<List<Category>> getAllCategories(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
         log.debug("REST request to get a page of Categories");
+        // get all data from database and convert them into json
         Page<Category> page = categoryService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
