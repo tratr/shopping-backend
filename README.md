@@ -31,7 +31,7 @@ postgres=# grant all privileges on database shopping to myusername;
 ## Useful Commands
 
 ```bash
-# start service (on SpringBoot)
+# start service (on SpringBoot) for dev profile
 $ ./gradlew bootRun -Pdev
 
 # unit test
