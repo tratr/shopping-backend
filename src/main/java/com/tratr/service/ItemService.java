@@ -63,4 +63,11 @@ public interface ItemService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    /**
+     * Delete the "id" item.
+     *
+     * @param name the name of the entity.
+     */
+    void deleteByName(String name);
 }

@@ -12,4 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
     Optional<Item> findByName(String name);
+
+    void deleteByName(String name);
 }

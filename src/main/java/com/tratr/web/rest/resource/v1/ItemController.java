@@ -184,4 +184,17 @@ public class ItemController {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
     }
+
+    /**
+     * {@code DELETE  /items/:name} : delete the "name" item.
+     *
+     * @param name the name of the category to delete.
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
+     */
+    @DeleteMapping("/items/name/{name}")
+    public ResponseEntity<Void> deleteItem(@PathVariable String name) {
+        log.debug("REST request to delete Item : {}", name);
+        itemService.deleteByName(name);
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, name)).build();
+    }
 }
