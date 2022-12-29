@@ -26,10 +26,18 @@ public class AnalysisServiceImpl implements AnalysisService {
         Optional<Category> category = this.categoryService.findOne(categoryId);
         Category cat = category.get();
         Double total = 0.0;
+        Double min = Double.MAX_VALUE;
+        Double max = 0.0;
         for (Item item : cat.getItems()) {
+            if (item.getPrice() < min) {
+                min = item.getPrice();
+            }
+            if (item.getPrice() > max) {
+                max = item.getPrice();
+            }
             total += item.getPrice();
         }
-        AnalysisDTO ana = new AnalysisDTO(total, 0.0, 0.0);
+        AnalysisDTO ana = new AnalysisDTO(total, max, min);
 
         return ana;
     }

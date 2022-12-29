@@ -29,40 +29,12 @@ public class AnalysisDTO implements Serializable {
         return this.sumPrice;
     }
 
-    public void setSumPrice(Category category) {
-        Double total = 0.0;
-        for (Item item : category.getItems()) {
-            total += item.getPrice();
-        }
-        this.sumPrice = total;
-    }
-
     public Double getMaxPrice() {
         return this.maxPrice;
     }
 
-    public void setMinPrice(Category category) {
-        Double min = Double.MAX_VALUE;
-        for (Item item : category.getItems()) {
-            if (item.getPrice() < min) {
-                min = item.getPrice();
-            }
-        }
-        this.minPrice = min;
-    }
-
     public Double getMinPrice() {
         return this.minPrice;
-    }
-
-    public void setMaxPrice(Category category) {
-        Double max = 0.0;
-        for (Item item : category.getItems()) {
-            if (item.getPrice() > max) {
-                max = item.getPrice();
-            }
-        }
-        this.minPrice = max;
     }
 
     @Override
