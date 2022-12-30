@@ -4,7 +4,9 @@ import com.tratr.domain.Category;
 import com.tratr.repository.CategoryRepository;
 import com.tratr.service.AnalysisService;
 import com.tratr.service.CategoryService;
+import com.tratr.service.HashService;
 import com.tratr.service.dto.AnalysisDTO;
+import com.tratr.service.dto.HashDTO;
 import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -35,11 +37,18 @@ public class CategoryController {
     private final AnalysisService analysisService;
 
     private final CategoryRepository categoryRepository;
+    private final HashService hashService;
 
-    public CategoryController(CategoryService categoryService, CategoryRepository categoryRepository, AnalysisService analysisService) {
+    public CategoryController(
+        CategoryService categoryService,
+        CategoryRepository categoryRepository,
+        AnalysisService analysisService,
+        HashService hashService
+    ) {
         this.categoryService = categoryService;
         this.categoryRepository = categoryRepository;
         this.analysisService = analysisService;
+        this.hashService = hashService;
     }
 
     @GetMapping("/categories")
@@ -86,5 +95,12 @@ public class CategoryController {
         log.debug("REST request to get Analysis Category : {}", id);
         AnalysisDTO anal = analysisService.calculate(id);
         return ResponseUtil.wrapOrNotFound(Optional.of(anal));
+    }
+
+    @GetMapping("/categories/hash/{id}")
+    public ResponseEntity<HashDTO> getHashName(@PathVariable Long id) {
+        log.debug("REST request to get HashName Category : {}", id);
+        HashDTO hash = hashService.hashcode(id);
+        return ResponseUtil.wrapOrNotFound(Optional.of(hash));
     }
 }
